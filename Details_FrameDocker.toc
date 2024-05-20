@@ -1,0 +1,11 @@
+## Interface: 100207
+## Title: Details!: Frame Docker (plugin)
+## Notes: A Details! plugin to attach Details windows to arbitrary UI frames.
+## RequiredDeps: Details
+## IconTexture: Interface\AddOns\Details\images\minimap
+
+src/init.lua
+src/dock.lua
+
+src/options.lua
+src/options-ui.lua
