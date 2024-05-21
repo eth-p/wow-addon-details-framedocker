@@ -55,7 +55,6 @@ end
 
 -- Update Functions --
 function addon.UpdateInstance(id)
-	print("Updating instance "..id)
 	local instance = Details:GetInstance(id)
 	local frame = instance.baseframe
 	local opts = plugin.options.windows[id]
@@ -73,17 +72,20 @@ function addon.UpdateInstance(id)
 	end
 
 	-- Dock.
-	if not instance._framedocker_docked then
+	if opts.enabled and not instance._framedocker_docked then
 		local parent = GetParent(opts.parent)
 		if parent ~= nil then
 			DoDock(instance, frame, parent, opts)
 			instance._framedocker_docked = true
 		end
 	end
+
+	-- Ensure the bars and background are parented to the base frame.
+	instance.rowframe:SetParent(frame)
+	instance.windowSwitchButton:SetParent(frame)
 end
 
 function addon.UpdateAllInstances()
-	print("Want updating all instances")
 	for id = 1, Details:GetNumInstancesAmount() do
 		addon.UpdateInstance(id)
 	end
